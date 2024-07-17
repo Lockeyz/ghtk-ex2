@@ -24,4 +24,5 @@
     <string name="y3">y3</string>
     <string name="history">Hành trình</string>
     <string name="setting">Cài đặt</string>
+    <string name="error_field_required">Chưa nhập</string>
 </resources>

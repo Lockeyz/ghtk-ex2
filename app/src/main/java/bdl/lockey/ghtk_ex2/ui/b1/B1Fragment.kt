@@ -1,16 +1,12 @@
 package bdl.lockey.ghtk_ex2.ui.b1
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import bdl.lockey.ghtk_ex2.R
 import bdl.lockey.ghtk_ex2.databinding.FragmentB1Binding
 
@@ -36,8 +32,21 @@ class B1Fragment : Fragment() {
 
     // Hàm nhận chuỗi nhập vào
     fun submitString(){
-        viewModel.setCurrentString(binding.stringEditText.text.toString())
-        viewModel.setResult()
+        if (!checkErrorTextField()) {
+            viewModel.setCurrentString(binding.stringEditText.text.toString())
+            viewModel.setResult()
+        }
+    }
+
+    fun checkErrorTextField(): Boolean {
+        if (binding.stringEditText.text.isNullOrEmpty()) {
+            binding.stringInputLayout.isErrorEnabled = true
+            binding.stringInputLayout.error = getString(R.string.error_field_required)
+            return true
+        } else {
+            binding.stringInputLayout.isErrorEnabled = false
+        }
+        return false
     }
 
     override fun onDestroyView() {

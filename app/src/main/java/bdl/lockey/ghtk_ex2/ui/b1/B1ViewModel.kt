@@ -6,13 +6,11 @@ import androidx.lifecycle.ViewModel
 
 class B1ViewModel : ViewModel() {
 
-    private var _currentString = MutableLiveData("")
-    val currentString: LiveData<String>
-        get() = _currentString
+    private val _currentString = MutableLiveData("")
+    val currentString: LiveData<String> = _currentString
 
-    private var _result = MutableLiveData("")
-    val result: LiveData<String>
-        get() = _result
+    private val _result = MutableLiveData("")
+    val result: LiveData<String> = _result
 
     fun setCurrentString(string: String) {
         _currentString.value = string
@@ -20,7 +18,7 @@ class B1ViewModel : ViewModel() {
 
     // Hàm trả về số lượng mỗi ký tự xuất hiện trong chuỗi
     fun setResult() {
-        val charArray = _currentString.value!!.toCharArray()
+        val charArray = currentString.value!!.toCharArray()
 
         val countMap = mutableMapOf<Char, Int>()
         val resultList = mutableListOf<String>("Chuỗi \"" + currentString.value +"\" có các phần tử sau:")
