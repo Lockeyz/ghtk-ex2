@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">ghtk-ex2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="b1">Bài 1</string>
+    <string name="b2">Bài 2</string>
+    <string name="b3">Bài 3</string>
+    <string name="require1">Nhập một chuỗi, xác định số lần xuất hiện của mỗi phần tử có trong chuỗi.</string>
+    <string name="type_here">Nhập tại đây\n</string>
+    <string name="calculate">Tính</string>
+    <string name="require2">Nhập 1 điểm A tọa độ (x, y) và 3 tọa độ 3 điểm của một tam giác. Xác định điểm A có nằm bên trong tam giác không?</string>
+    <string name="coordinate_point_a">Tọa độ điểm A</string>
+    <string name="xa">xA</string>
+    <string name="ya">yA</string>
+    <string name="coordinate_first_point">Tọa độ điểm thứ nhất tam giác</string>
+    <string name="x1">x1</string>
+    <string name="y1">y1</string>
+    <string name="coordinate_second_point">Tọa độ điểm thứ hai tam giác</string>
+    <string name="x2">x2\n</string>
+    <string name="y2">y2</string>
+    <string name="coordinate_third_point">Tọa độ điểm thứ ba tam giác</string>
+    <string name="x3">x3\n</string>
+    <string name="y3">y3</string>
+    <string name="history">Hành trình</string>
+    <string name="setting">Cài đặt</string>
+</resources>

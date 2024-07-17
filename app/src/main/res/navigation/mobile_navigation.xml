@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_b1">
+
+    <fragment
+        android:id="@+id/navigation_b1"
+        android:name="bdl.lockey.ghtk_ex2.ui.b1.B1Fragment"
+        android:label="@string/b1"
+        tools:layout="@layout/fragment_b1" />
+
+    <fragment
+        android:id="@+id/navigation_b2"
+        android:name="bdl.lockey.ghtk_ex2.ui.b2.B2Fragment"
+        android:label="@string/b2"
+        tools:layout="@layout/fragment_b2" />
+
+    <fragment
+        android:id="@+id/navigation_b3"
+        android:name="bdl.lockey.ghtk_ex2.ui.b3.B3Fragment"
+        android:label="@string/b3"
+        tools:layout="@layout/fragment_b3" />
+</navigation>
