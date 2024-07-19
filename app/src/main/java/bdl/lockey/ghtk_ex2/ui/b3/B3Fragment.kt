@@ -1,14 +1,14 @@
 package bdl.lockey.ghtk_ex2.ui.b3
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import bdl.lockey.ghtk_ex2.ApiInterface
 import bdl.lockey.ghtk_ex2.R
 import bdl.lockey.ghtk_ex2.RetrofitInstance
@@ -22,8 +22,11 @@ class B3Fragment : Fragment() {
     private var _binding: FragmentB3Binding? = null
     private val binding get() = _binding!!
 
+    val viewModel: B3ViewModel by viewModels()
+
     private lateinit var apiInterface: ApiInterface
-    private val historyList = mutableListOf<HistoryModel>()
+    lateinit var adapter: HistoryAdapter
+//    private val historyList = mutableListOf<HistoryModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,13 +39,29 @@ class B3Fragment : Fragment() {
         return root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getInterface()
-        getData()
-//        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayShowTitleEnabled(false)
-//        val inflater = LayoutInflater.from(activity)
-//        val customView: View = inflater.inflate(R.layout.custom_action_bar, null)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.b3ViewModel = viewModel
+        binding.b3Fragment = this
+
+        viewModel.setHistoryList()
+//        getInterface()
+//        getData()
+
+        setHistoryRecyclerView()
+        adapter = HistoryAdapter(requireContext(), viewModel.historyList.value!!)
+
+
+//        adapter = HistoryAdapter(requireContext(),
+//            viewModel.historyList.value!!
+//        )
+//        binding.recyclerViewHistory.adapter = adapter
+//        adapter.notifyDataSetChanged()
+
+
+
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayShowCustomEnabled(true)
         (activity as AppCompatActivity?)!!.supportActionBar!!.setCustomView(R.layout.custom_action_bar)
     }
@@ -58,13 +77,17 @@ class B3Fragment : Fragment() {
             override fun onResponse(call: retrofit2.Call<B3Model>, response: Response<B3Model>) {
                 if (response.isSuccessful && response.body() != null) {
                     val data = response.body()!!
+                    val historyList = mutableListOf<HistoryModel>()
 
-                    binding.textViewName.text = data.fullName
-                    binding.textViewPosition.text = data.position
                     data.history.forEach { history ->
                         historyList.add(history)
                     }
-                    setHistoryRecyclerView()
+//                    setHistoryRecyclerView()
+
+                    viewModel.setName(data.fullName)
+                    viewModel.setPosition(data.position)
+//                    viewModel.setHistoryList(historyList)
+
                 }
             }
             override fun onFailure(call: retrofit2.Call<B3Model>, t: Throwable) {
@@ -74,7 +97,9 @@ class B3Fragment : Fragment() {
     }
 
     private fun setHistoryRecyclerView() {
-        binding.recyclerViewHistory.adapter = B3Adapter(requireContext(), historyList)
+        binding.recyclerViewHistory.adapter = HistoryAdapter(requireContext(),
+            viewModel.historyList.value!!
+        )
     }
 
     override fun onDestroyView() {

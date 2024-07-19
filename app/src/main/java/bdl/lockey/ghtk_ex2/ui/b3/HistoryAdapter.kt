@@ -9,8 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import bdl.lockey.ghtk_ex2.R
 
-class B3Adapter(private val context: Context, private val dataset: List<HistoryModel>) :
-    RecyclerView.Adapter<B3Adapter.ItemViewHolder>() {
+class HistoryAdapter(private val context: Context, private val dataset: List<HistoryModel>) :
+    RecyclerView.Adapter<HistoryAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvIsUp: TextView = view.findViewById(R.id.tv_is_up)

@@ -44,6 +44,7 @@ class B1Fragment : Fragment() {
         binding.recyclerView.adapter = B1Adapter(requireContext(), viewModel.resultList.value!!)
     }
 
+    // Kiem tra chuoi da nhap chua
     fun checkErrorTextField(): Boolean {
         if (binding.stringEditText.text.isNullOrEmpty()) {
             binding.stringInputLayout.isErrorEnabled = true

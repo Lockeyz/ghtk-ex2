@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="b1ViewModel"
             type="bdl.lockey.ghtk_ex2.ui.b1.B1ViewModel" />
+
         <variable
             name="b1Fragment"
             type="bdl.lockey.ghtk_ex2.ui.b1.B1Fragment" />
 
     </data>
-    
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -43,7 +44,7 @@
                     android:id="@+id/string_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onTextChanged="@{() -> b1Fragment.checkErrorTextField()}"/>
+                    android:onTextChanged="@{() -> b1Fragment.checkErrorTextField()}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -51,15 +52,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="@string/calculate"
                 android:onClick="@{() -> b1Fragment.submitString()}"
+                android:text="@string/calculate"
                 app:layout_constraintTop_toBottomOf="@id/string_input_layout" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_margin="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"

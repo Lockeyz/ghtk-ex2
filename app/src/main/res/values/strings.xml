@@ -29,4 +29,8 @@
     <string name="up">UP</string>
     <string name="ghtk_wallet">Ví GHTK Pay</string>
     <string name="colon">:</string>
+    <string name="data">Nạp data</string>
+    <string name="ddtt">Di động trả trước</string>
+    <string name="bhpvi">Bảo hiểm PVI</string>
+    <string name="hdd">Hóa đơn điện</string>
 </resources>
