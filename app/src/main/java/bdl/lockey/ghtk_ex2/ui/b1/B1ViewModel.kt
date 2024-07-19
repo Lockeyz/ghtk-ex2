@@ -12,16 +12,20 @@ class B1ViewModel : ViewModel() {
     private val _result = MutableLiveData("")
     val result: LiveData<String> = _result
 
+
+    private val _resultList = MutableLiveData<List<CharacterModel>>(mutableListOf())
+    val resultList: LiveData<List<CharacterModel>> = _resultList
+
+
     fun setCurrentString(string: String) {
         _currentString.value = string
     }
 
     // Hàm trả về số lượng mỗi ký tự xuất hiện trong chuỗi
-    fun setResult() {
+    fun setResultList() {
         val charArray = currentString.value!!.toCharArray()
 
         val countMap = mutableMapOf<Char, Int>()
-        val resultList = mutableListOf<String>("Chuỗi \"" + currentString.value +"\" có các phần tử sau:")
 
         for (character in charArray) {
             if (countMap.containsKey(key = character)) {
@@ -31,14 +35,12 @@ class B1ViewModel : ViewModel() {
             }
         }
 
-        for ((character, count) in countMap) {
-            if (character.toString() == " ") {
-                resultList.add("Khoảng trắng xuất hiện $count lần")
-            } else {
-                resultList.add("Phần tử $character xuất hiện $count lần")
-            }
+        _resultList.value = countMap.map { (character, occurrence) ->
+            CharacterModel(
+                character.toString(),
+                occurrence.toString()
+            )
         }
-        _result.value = resultList.joinToString("\n")
     }
 
 }

@@ -4,12 +4,12 @@
     <item
         android:id="@+id/navigation_b1"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/b1" />
+        android:title="@string/b1"/>
 
     <item
         android:id="@+id/navigation_b2"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/b2" />
+        android:title="@string/b2"/>
 
     <item
         android:id="@+id/navigation_b3"

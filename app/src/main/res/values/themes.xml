@@ -13,4 +13,13 @@
 <!--        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>-->
 <!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
     </style>
+
+    <style name="circular">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="CustomActionBarTitleText">
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

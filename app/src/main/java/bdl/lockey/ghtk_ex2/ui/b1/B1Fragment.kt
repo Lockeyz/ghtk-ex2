@@ -17,6 +17,8 @@ class B1Fragment : Fragment() {
 
     private val viewModel: B1ViewModel by viewModels()
 
+//    lateinit var adapter: B1Adapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_b1, container, false)
         return binding.root
@@ -28,14 +30,18 @@ class B1Fragment : Fragment() {
         binding.b1ViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         binding.b1Fragment = this
+
+        binding.recyclerView.adapter = B1Adapter(requireContext(), viewModel.resultList.value!!)
     }
 
     // Hàm nhận chuỗi nhập vào
     fun submitString(){
         if (!checkErrorTextField()) {
             viewModel.setCurrentString(binding.stringEditText.text.toString())
-            viewModel.setResult()
+            viewModel.setResultList()
         }
+
+        binding.recyclerView.adapter = B1Adapter(requireContext(), viewModel.resultList.value!!)
     }
 
     fun checkErrorTextField(): Boolean {

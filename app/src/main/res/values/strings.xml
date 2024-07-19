@@ -3,9 +3,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="b1">Bài 1</string>
-    <string name="b2">Bài 2</string>
-    <string name="b3">Bài 3</string>
+    <string name="b1">Count Character</string>
+    <string name="b2">Triangle Check</string>
+    <string name="b3">Profile</string>
     <string name="require1">Nhập một chuỗi, xác định số lần xuất hiện của mỗi phần tử có trong chuỗi.</string>
     <string name="type_here">Nhập tại đây\n</string>
     <string name="calculate">Tính</string>
@@ -25,4 +25,8 @@
     <string name="history">Hành trình</string>
     <string name="setting">Cài đặt</string>
     <string name="error_field_required">Chưa nhập</string>
+    <string name="employee_profile">Hồ sơ nhân viên</string>
+    <string name="up">UP</string>
+    <string name="ghtk_wallet">Ví GHTK Pay</string>
+    <string name="colon">:</string>
 </resources>

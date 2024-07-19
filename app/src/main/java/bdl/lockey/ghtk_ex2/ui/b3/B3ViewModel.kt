@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class B3ViewModel : ViewModel() {
+    private val _history = MutableLiveData<List<HistoryModel>>(mutableListOf())
+    val history: LiveData<List<HistoryModel>> = _history
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+    fun setHistory() {
+
     }
-    val text: LiveData<String> = _text
 }
