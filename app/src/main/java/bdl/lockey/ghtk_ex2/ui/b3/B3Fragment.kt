@@ -81,6 +81,7 @@ class B3Fragment : Fragment() {
 //            }
 //        })
 //    }
+    //
 
     private fun setHistoryRecyclerView() {
         binding.recyclerViewHistory.adapter = HistoryAdapter(requireContext(),
