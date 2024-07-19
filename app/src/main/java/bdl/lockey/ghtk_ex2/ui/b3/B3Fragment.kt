@@ -22,11 +22,9 @@ class B3Fragment : Fragment() {
     private var _binding: FragmentB3Binding? = null
     private val binding get() = _binding!!
 
-    val viewModel: B3ViewModel by viewModels()
+    private val viewModel: B3ViewModel by viewModels()
 
-    private lateinit var apiInterface: ApiInterface
     lateinit var adapter: HistoryAdapter
-//    private val historyList = mutableListOf<HistoryModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,54 +45,42 @@ class B3Fragment : Fragment() {
         binding.b3Fragment = this
 
         viewModel.setHistoryList()
-//        getInterface()
-//        getData()
-
         setHistoryRecyclerView()
+
         adapter = HistoryAdapter(requireContext(), viewModel.historyList.value!!)
-
-
-//        adapter = HistoryAdapter(requireContext(),
-//            viewModel.historyList.value!!
-//        )
-//        binding.recyclerViewHistory.adapter = adapter
-//        adapter.notifyDataSetChanged()
-
-
 
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayShowCustomEnabled(true)
         (activity as AppCompatActivity?)!!.supportActionBar!!.setCustomView(R.layout.custom_action_bar)
     }
 
 
-    private fun getInterface() {
-        apiInterface = RetrofitInstance.getInstance().create(ApiInterface::class.java)
-    }
-
-    private fun getData() {
-        val call = apiInterface.getData()
-        call.enqueue(object : Callback<B3Model> {
-            override fun onResponse(call: retrofit2.Call<B3Model>, response: Response<B3Model>) {
-                if (response.isSuccessful && response.body() != null) {
-                    val data = response.body()!!
-                    val historyList = mutableListOf<HistoryModel>()
-
-                    data.history.forEach { history ->
-                        historyList.add(history)
-                    }
-//                    setHistoryRecyclerView()
-
-                    viewModel.setName(data.fullName)
-                    viewModel.setPosition(data.position)
-//                    viewModel.setHistoryList(historyList)
-
-                }
-            }
-            override fun onFailure(call: retrofit2.Call<B3Model>, t: Throwable) {
-                Toast.makeText(context, "That bai", Toast.LENGTH_LONG).show()
-            }
-        })
-    }
+//    private fun getInterface() {
+//        apiInterface = RetrofitInstance.getInstance().create(ApiInterface::class.java)
+//    }
+//
+//    private fun getData() {
+//        val call = apiInterface.getData()
+//        call.enqueue(object : Callback<B3Model> {
+//            override fun onResponse(call: retrofit2.Call<B3Model>, response: Response<B3Model>) {
+//                if (response.isSuccessful && response.body() != null) {
+//                    val data = response.body()!!
+//                    val historyList = mutableListOf<HistoryModel>()
+//
+//                    data.history.forEach { history ->
+//                        historyList.add(history)
+//                    }
+//
+//                    viewModel.setName(data.fullName)
+//                    viewModel.setPosition(data.position)
+//
+//
+//                }
+//            }
+//            override fun onFailure(call: retrofit2.Call<B3Model>, t: Throwable) {
+//                Toast.makeText(context, "That bai", Toast.LENGTH_LONG).show()
+//            }
+//        })
+//    }
 
     private fun setHistoryRecyclerView() {
         binding.recyclerViewHistory.adapter = HistoryAdapter(requireContext(),
