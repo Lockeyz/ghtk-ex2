@@ -7,7 +7,6 @@
         <variable
             name="history"
             type="bdl.lockey.ghtk_ex2.ui.b3.HistoryModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

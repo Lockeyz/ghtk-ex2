@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import bdl.lockey.ghtk_ex2.ApiInterface
 import bdl.lockey.ghtk_ex2.R
 import bdl.lockey.ghtk_ex2.RetrofitInstance
@@ -25,7 +26,7 @@ class B3Fragment : Fragment() {
 
     private val viewModel: B3ViewModel by viewModels()
 
-    lateinit var adapter: HistoryAdapter
+    private lateinit var adapter: HistoryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,21 +40,27 @@ class B3Fragment : Fragment() {
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.b3ViewModel = viewModel
         binding.b3Fragment = this
 
-        viewModel.setHistoryList()
-//        setHistoryRecyclerView()
-
-        adapter = HistoryAdapter(requireContext(), viewModel.historyList.value!!)
-
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayShowCustomEnabled(true)
         (activity as AppCompatActivity?)!!.supportActionBar!!.setCustomView(R.layout.custom_action_bar)
-    }
 
+        viewModel.setHistoryList()
+
+
+        viewModel.historyList.observe(viewLifecycleOwner) {
+            adapter = HistoryAdapter(requireContext(), viewModel.historyList.value!!)
+            binding.recyclerViewHistory.adapter = adapter
+            adapter.notifyDataSetChanged()
+            Log.d("HistoryFragment", viewModel.historyList.value?.size.toString())
+        }
+
+    }
 
 //    private fun getInterface() {
 //        apiInterface = RetrofitInstance.getInstance().create(ApiInterface::class.java)
@@ -82,13 +89,6 @@ class B3Fragment : Fragment() {
 //            }
 //        })
 //    }
-
-    private fun setHistoryRecyclerView() {
-        binding.recyclerViewHistory.adapter = HistoryAdapter(requireContext(),
-            viewModel.historyList.value!!
-        )
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
