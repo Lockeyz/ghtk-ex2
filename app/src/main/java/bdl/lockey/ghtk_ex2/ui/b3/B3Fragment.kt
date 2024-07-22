@@ -2,6 +2,7 @@ package bdl.lockey.ghtk_ex2.ui.b3
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,7 +46,7 @@ class B3Fragment : Fragment() {
         binding.b3Fragment = this
 
         viewModel.setHistoryList()
-        setHistoryRecyclerView()
+//        setHistoryRecyclerView()
 
         adapter = HistoryAdapter(requireContext(), viewModel.historyList.value!!)
 
@@ -87,6 +88,7 @@ class B3Fragment : Fragment() {
             viewModel.historyList.value!!
         )
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

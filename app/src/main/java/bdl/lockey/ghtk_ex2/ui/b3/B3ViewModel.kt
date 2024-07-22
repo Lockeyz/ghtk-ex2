@@ -4,8 +4,11 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import bdl.lockey.ghtk_ex2.ApiInterface
 import bdl.lockey.ghtk_ex2.RetrofitInstance
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -29,27 +32,31 @@ class B3ViewModel : ViewModel() {
     }
 
     fun setHistoryList() {
-        val apiInterface = RetrofitInstance.getInstance().create(ApiInterface::class.java)
+        viewModelScope.launch {
+            delay(2000)
+            val apiInterface = RetrofitInstance.getInstance().create(ApiInterface::class.java)
 
-        val call = apiInterface.getData()
-        call.enqueue(object : Callback<B3Model> {
-            override fun onResponse(call: retrofit2.Call<B3Model>, response: Response<B3Model>) {
-                if (response.isSuccessful && response.body() != null) {
-                    val data = response.body()!!
-                    val historyList = mutableListOf<HistoryModel>()
+            val call = apiInterface.getData()
+            call.enqueue(object : Callback<B3Model> {
+                override fun onResponse(call: retrofit2.Call<B3Model>, response: Response<B3Model>) {
+                    if (response.isSuccessful && response.body() != null) {
+                        val data = response.body()!!
+                        val historyList = mutableListOf<HistoryModel>()
 
-                    data.history.forEach { history ->
-                        historyList.add(history)
+                        data.history.forEach { history ->
+                            historyList.add(history)
+                        }
+
+                        setName(data.fullName)
+                        setPosition(data.position)
+                        _historyList.value = historyList
                     }
-
-                    setName(data.fullName)
-                    setPosition(data.position)
-                    _historyList.value = historyList
                 }
-            }
-            override fun onFailure(call: retrofit2.Call<B3Model>, t: Throwable) {
+                override fun onFailure(call: retrofit2.Call<B3Model>, t: Throwable) {
 
-            }
-        })
+                }
+            })
+        }
+
     }
 }
