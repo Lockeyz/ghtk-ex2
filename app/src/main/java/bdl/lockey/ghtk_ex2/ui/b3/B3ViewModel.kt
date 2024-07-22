@@ -41,15 +41,10 @@ class B3ViewModel : ViewModel() {
                 override fun onResponse(call: retrofit2.Call<B3Model>, response: Response<B3Model>) {
                     if (response.isSuccessful && response.body() != null) {
                         val data = response.body()!!
-                        val historyList = mutableListOf<HistoryModel>()
-
-                        data.history.forEach { history ->
-                            historyList.add(history)
-                        }
 
                         setName(data.fullName)
                         setPosition(data.position)
-                        _historyList.value = historyList
+                        _historyList.value = data.history
                     }
                 }
                 override fun onFailure(call: retrofit2.Call<B3Model>, t: Throwable) {
