@@ -51,7 +51,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/tv_is_up"
             app:layout_constraintTop_toTopOf="@id/tv_is_up"
-            tools:text="112211111111111 222223233" />
+            tools:text="112211111111111 222223233 23432423" />
 
         <TextView
             android:id="@+id/tv_date"

@@ -1,11 +1,10 @@
 package bdl.lockey.ghtk_ex2.ui.b3
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import bdl.lockey.ghtk_ex2.ApiInterface
+import bdl.lockey.ghtk_ex2.ProfileApiService
 import bdl.lockey.ghtk_ex2.RetrofitInstance
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -34,9 +33,9 @@ class B3ViewModel : ViewModel() {
     fun setHistoryList() {
         viewModelScope.launch {
             delay(2000)
-            val apiInterface = RetrofitInstance.getInstance().create(ApiInterface::class.java)
+            val profileApi = RetrofitInstance.getInstance().create(ProfileApiService::class.java)
 
-            val call = apiInterface.getData()
+            val call = profileApi.getData()
             call.enqueue(object : Callback<B3Model> {
                 override fun onResponse(call: retrofit2.Call<B3Model>, response: Response<B3Model>) {
                     if (response.isSuccessful && response.body() != null) {

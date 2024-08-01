@@ -6,17 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import bdl.lockey.ghtk_ex2.ApiInterface
 import bdl.lockey.ghtk_ex2.R
-import bdl.lockey.ghtk_ex2.RetrofitInstance
 import bdl.lockey.ghtk_ex2.databinding.FragmentB3Binding
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class B3Fragment : Fragment() {
