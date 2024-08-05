@@ -4,14 +4,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import bdl.lockey.ghtk_ex2.ProfileApiService
+import bdl.lockey.ghtk_ex2.network.ProfileApiService
 import bdl.lockey.ghtk_ex2.RetrofitInstance
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Callback
 import retrofit2.Response
 
+enum class ApiStatus { LOADING, ERROR, DONE }
+
 class B3ViewModel : ViewModel() {
+
+    private val _status = MutableLiveData<ApiStatus>()
+    val status: LiveData<ApiStatus>
+        get() = _status
+
+    private val _b3 = MutableLiveData<B3Model>()
+    val b3: LiveData<B3Model> get() = _b3
 
     private val _name = MutableLiveData("")
     val name: LiveData<String> = _name
@@ -32,6 +41,7 @@ class B3ViewModel : ViewModel() {
 
     fun setHistoryList() {
         viewModelScope.launch {
+            _status.value = ApiStatus.LOADING
             delay(2000)
             val profileApi = RetrofitInstance.getInstance().create(ProfileApiService::class.java)
 
