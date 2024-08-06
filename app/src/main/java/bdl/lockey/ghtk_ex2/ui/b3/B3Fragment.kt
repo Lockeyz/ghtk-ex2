@@ -38,7 +38,6 @@ class B3Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.b3ViewModel = viewModel
-        binding.b3Fragment = this
 
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayShowCustomEnabled(true)
         (activity as AppCompatActivity?)!!.supportActionBar!!.setCustomView(R.layout.custom_action_bar)

@@ -9,9 +9,6 @@
             name="b3ViewModel"
             type="bdl.lockey.ghtk_ex2.ui.b3.B3ViewModel" />
 
-        <variable
-            name="b3Fragment"
-            type="bdl.lockey.ghtk_ex2.ui.b3.B3Fragment" />
     </data>
 
     <ScrollView
