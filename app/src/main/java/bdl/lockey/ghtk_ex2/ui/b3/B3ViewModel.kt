@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import bdl.lockey.ghtk_ex2.network.ProfileApiService
-import bdl.lockey.ghtk_ex2.RetrofitInstance
+import bdl.lockey.ghtk_ex2.network.ProfileApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -43,23 +44,36 @@ class B3ViewModel : ViewModel() {
         viewModelScope.launch {
             _status.value = ApiStatus.LOADING
             delay(2000)
-            val profileApi = RetrofitInstance.getInstance().create(ProfileApiService::class.java)
+            try {
+                val data = ProfileApi.retrofitService.getData()
+                val profile = data.body()
+                _name.value = profile?.fullName
+                _position.value = profile?.position
+                _historyList.value = profile?.history
+                _status.value = ApiStatus.DONE
+            } catch (e: Exception) {
+                _status.value = ApiStatus.ERROR
+                _name.value = ""
+                _position.value = ""
+                _historyList.value = listOf()
+            }
 
-            val call = profileApi.getData()
-            call.enqueue(object : Callback<B3Model> {
-                override fun onResponse(call: retrofit2.Call<B3Model>, response: Response<B3Model>) {
-                    if (response.isSuccessful && response.body() != null) {
-                        val data = response.body()!!
 
-                        setName(data.fullName)
-                        setPosition(data.position)
-                        _historyList.value = data.history
-                    }
-                }
-                override fun onFailure(call: retrofit2.Call<B3Model>, t: Throwable) {
 
-                }
-            })
+//            profile.enqueue(object : Callback<B3Model> {
+//                override fun onResponse(call: Call<B3Model>, response: Response<B3Model>) {
+//                    if (response.isSuccessful && response.body() != null) {
+//                        val data = response.body()!!
+//                        _name.value = data.fullName
+//                        _position.value = data.position
+//                        _historyList.value = data.history
+//                        _status.value = ApiStatus.DONE
+//                    }
+//                }
+//                override fun onFailure(call: Call<B3Model>, t: Throwable) {
+//
+//                }
+//            })
         }
 
     }

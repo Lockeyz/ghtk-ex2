@@ -1,7 +1,7 @@
 package bdl.lockey.ghtk_ex2.network
 
 import bdl.lockey.ghtk_ex2.ui.b3.B3Model
-import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -15,11 +15,11 @@ private val retrofit = Retrofit.Builder()
 
 interface ProfileApiService {
     @GET("d/af3cc8b64fa487da8be34c1cc1c5d2d5.json")
-    suspend fun getData(): Call<B3Model>
+    suspend fun getData(): Response<B3Model>
 }
 
 object ProfileApi {
-    val retrofitService : ProfileApiService by lazy { retrofit.create(ProfileApiService::class.java) }
+    val retrofitService: ProfileApiService by lazy { retrofit.create(ProfileApiService::class.java) }
 }
 
 

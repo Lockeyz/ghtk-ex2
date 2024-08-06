@@ -3,16 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="history"
-            type="bdl.lockey.ghtk_ex2.ui.b3.HistoryModel" />
-    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        >
+        android:layout_height="40dp">
 
         <ImageView
             android:id="@+id/image_up"
@@ -43,12 +37,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:maxLines="1"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/tv_is_up"
             app:layout_constraintEnd_toStartOf="@+id/tv_date"
-            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/tv_is_up"
             app:layout_constraintTop_toTopOf="@id/tv_is_up"
             tools:text="112211111111111 222223233 23432423" />

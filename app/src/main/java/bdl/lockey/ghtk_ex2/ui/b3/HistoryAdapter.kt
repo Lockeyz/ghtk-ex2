@@ -8,21 +8,23 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import bdl.lockey.ghtk_ex2.R
+import bdl.lockey.ghtk_ex2.databinding.ItemHistoryBinding
 
-class HistoryAdapter(private val context: Context, private val dataset: List<HistoryModel>) :
+class HistoryAdapter(private val dataset: List<HistoryModel>) :
     RecyclerView.Adapter<HistoryAdapter.ItemViewHolder>() {
 
-    class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvIsUp: TextView = view.findViewById(R.id.tv_is_up)
-        val tvTitle: TextView = view.findViewById(R.id.tv_title)
-        val tvDate: TextView = view.findViewById(R.id.tv_date)
-        val imageIcon: ImageView = view.findViewById(R.id.image_up)
+    class ItemViewHolder(binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
+        val tvTitle: TextView = binding.tvTitle
+        val tvDate: TextView = binding.tvDate
+        val tvIsUp: TextView = binding.tvIsUp
+        val imageIcon: ImageView = binding.imageUp
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val adapterLayout =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_history, parent, false)
-        return ItemViewHolder(adapterLayout)
+//        val adapterLayout =
+//            LayoutInflater.from(parent.context).inflate(R.layout.item_history, parent, false)
+//        return ItemViewHolder(adapterLayout)
+        return ItemViewHolder(ItemHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -33,7 +35,10 @@ class HistoryAdapter(private val context: Context, private val dataset: List<His
         val item = dataset[position]
         if (!item.isUp) {
             holder.imageIcon.setImageResource(R.drawable.ic_down)
-            holder.tvIsUp.text = "DOWN"
+            holder.tvIsUp.text
+        } else {
+            holder.imageIcon.setImageResource(R.drawable.ic_up)
+            holder.tvIsUp.text = "UP"
         }
         holder.tvTitle.text = item.title
         holder.tvDate.text = "18/07/2024"
